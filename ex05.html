@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>웹 연습05</title>
+    <style></style>
+    <script></script>
+</head>
+<body>
+    <!-- 레이아웃 배열 -->
+    <h2 class="tit">기존의 배열 방식</h2>
+
+    <div class="wrap">
+        <!-- div.header>a.logo{로고}+(div#gnb>div.menu>div.item*5>a) -->
+        <div class="header">
+            <a href="" class="logo">로고</a>
+            <div id="gnb">
+                <div class="menu">
+                    <div class="item"><a href=""></a></div>
+                    <div class="item"><a href=""></a></div>
+                    <div class="item"><a href=""></a></div>
+                    <div class="item"><a href=""></a></div>
+                    <div class="item"><a href=""></a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- div.content>div.visual>img -->
+        <div class="content">
+            <div class="visual"><img src="" alt=""></div>
+            <div class="con">콘텐츠</div>
+        </div>
+
+        <!-- div.footer>div.copyright -->
+        <div class="footer">
+            <div class="copyright"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <h2 class="tit">HTML5 기준의 배열 방식 :시멘틱 태그=개념을 부여한 태그=필수 사용은 아님, 다만 유지보수가 편함</h2>
+
+        <!-- div.container>header+main+footer -->
+        <div class="container">
+            <header>
+                <!-- logo :사용자 정의 태그 -->
+                <logo><a href=""></a></logo>
+
+                <!-- nav#gnb>ul>li*5>a -->
+                <nav id="gnb">
+                    <ul>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <!-- figure.visual>img -->
+                <figure class="visual"><img src="" alt=""></figure>
+
+
+                <!-- section(영역적 의미)>article(기사 영역),  article(기사 영역)>section(영역적 의미) 어느 것이나 상관 없으나, 꼭 제목 태그가 들어가야 함 -->
+                <section class="con">
+                    <h2>섹션 영역</h2>
+                </section>
+                <article class="art">
+                    <h2>기사 영역</h2>
+                </article>
+                
+
+                <aside>
+                    <h2>사이드바</h2>
+                </aside>
+            </main>
+
+            <footer>
+                <address></address>
+            </footer>
+        </div>
+
+
+
+</body>
+</html>

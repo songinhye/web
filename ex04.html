@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>웹 연습04</title>
+    <style>
+
+    /* table 태그에는 display:table; display:table-row; display:table-cell;을 꼭 써야 함, 반응형을 만들 때 유용함 */
+    .tb{
+        display:table;
+        border:2px solid #333; width: 500px;}
+    .tb tr{
+        display:table-row;}
+    .tb td, .tb th{
+        display:table-cell;
+        border: 1px dotted #333; line-height: 40px; text-align: center;}
+
+    </style>
+    <script></script>
+</head>
+<body>
+    <h1>테이블 요소</h1>
+
+    <!-- 표준적인 방법 -->
+     <!--기존 : thead -> tfoot tbody     올해 초 변경 : thead > tbody > tfoot -->
+    <table class="tb">
+
+        <caption>표제목</caption>
+            <thead>
+                <tr>
+                    <!-- th:자동으로 가운데 정렬 -->
+                    <th>번호</th><th>성명</th><th>함수</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <!-- 왼쪽 기본 정렬 -->
+                    <td>1</td><td>김윤정</td><td>33</td>
+                </tr>
+                <tr>
+                    <td>2</td><td>김미미</td><td>22</td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <!-- 3칸 합치기 -->
+                        <td colspan="3">통계 점수:330</td>
+                </tr>
+            </tfoot>
+        
+    </table>
+    
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>웹 연습07</title>
+    <!-- reset.css 초기화 링크, 전 세계적으로 5가지가 있음 -->
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">  -->
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+
+    <style>
+    
+    *{margin: 0; padding: 0;}
+    body,html{width: 100%; font-family: "맑은 고딕",Malgun,sans-serif,arial; color: #333;}
+    a{text-decoration: none;}
+    ul{list-style-type: none;}
+    img{border: none;}
+
+
+    .hd{
+        width: 100%; height: 100px;
+        position: fixed; left: 0; top: 0;
+        z-index: 999; background-color: antiquewhite; border-bottom: 3px solid #4745e5; min-width: 1280px; -ms-overflow-style: none; }
+
+
+        /* 크롬과 사파리에 적용됨 스크롤은 되지만 스크롤파는 표시가 되지 않음, 가상선택자로 :: 두개 붙인다 */
+        ::-webkit-scrollbar{display: none;}
+
+        .hd_wrap{width: 1280px; margin: 0 auto;}
+        /* 포지션 릴리, 스탭틱(기본) : 마진 0 오토; 로 가운데 정렬  / 앱솔은 좌표값 */
+
+        .logo{
+            display: block;
+            float: left; padding-top: 5px;}
+        #tnb{
+            float: right;}
+            /* 상단에서 사용한 float에 따른 clear 값을 해준다 : clear:left; clear:right; clear:both; clear:none(흐름을 끊지 않겠다);   */
+        #gnb{clear: both;}
+
+        .menu li{float: left; padding: 8px;}
+
+        /* 글자는 a에서 바꾸어야 됨 */
+        /* .menu > li > a{} 선택자는 EX에선 지원이 안됨, */
+        .menu a{color: #333;}
+        
+        #content{clear: both;}
+
+        /* 부모에게 부피를 지정해줬을때 자손들에게 %를 사용할 수있고, 그게 아니라면 자손에게 (vh, vw)를 써야함, 부모와 상관없이 기기의 넓이 높이에 맞추어 꽉차게 해주는 단위 */
+        .page{clear:both; position: relative; width: 100vw; height: 100vh;}
+        #page1{background-color:aqua;}
+        #page2{background-color:chocolate;}
+        #page3{background-color:chartreuse;}
+        #page4{background-color:blue;}
+        .page_wrap{width: 1280px; margin: 0 auto;}
+
+        /* 텍스트는 line-height: 4;로 잡아준다, 글자크기의 4배라는 뜻 */
+        .page_tit{text-align: center; line-height: 4; padding-top: 120px;}
+
+            /* padding값을 내부요소에 주면 전체 박스 사이즈가 넓어지지 않음, 이때 box-sizing을 주어도 EX에선 먹히지 않기 때문에, 내부요소에 주는 것이 좋음 */
+            /* 한줄의 글자를 움직일 때는 text-indent를 활용하여 들여씀 ,padding을 쓸때는 width를 주지 않는 것이고 굳이 쓰고 싶으면 상자를 하나 더 만들어서 적용*/
+
+            #ft{
+                clear: both;
+                width: 100%; height: 120px; border-top: 3px solid #333;            }
+                .ft_wrap{width: 1280px; margin: 0 auto;}
+                #fnb li{float: left; padding:14px;}
+                #fnb li a{color: #333; font-weight: 600;}
+                #fnb li a:hover{color: red;}
+                
+                #fnb li a::after{color: #333333;}
+                #fnb li a::after{content: "|"; padding-left: 24px;}
+                #fnb li.item4 a::after{content: "";}
+                .ft_logo{clear: both; float: left;}
+                .copyright{line-height: 120px; float:right; text-align: right;}
+
+                /* 슬라이드 박스 */
+                #vs{width: 1280px; height: 500px;  position: relative; overflow: hidden; }
+                .img_box{width: 200%; height: 500px; transition-duration: 0.8s;}
+                /* 나를 기준으로 #vs를 바라봐서 이미지 2개의 부피를 100%로 생각하고 50%로 나눈다 */
+                .img_box li{width: 50%; float: left; height: 500px;}
+                .img_box li.item1{background-color: red;}
+                .img_box li.item2{background-color: blue;}
+                .img_box li a{display: block; width: 180px;height: 180px; margin: 20px; float: left; background-color: #fff;}
+                
+                .btn_box li{position: absolute;top: 220px; z-index: 20;}
+                .btn_box label{
+                    display: block; width: 80px; height: 80px; font-size: 36px; text-align: center; border-radius: 42px; background-color: cyan; color: yellow; line-height: 80px;                }
+                .btn_box li.prev{left: 30px;}
+                .btn_box li.next{right: 30px;}
+                #ra1, #ra2{display: none;}
+                #ra1:checked ~ .img_box{margin-left: 0;}
+                #ra2:checked ~ .img_box{margin-left: -1280px;}
+
+    </style>
+</head>
+<body>
+
+    <h2>플로이드 방식(가운데 정렬)</h2>
+        <!-- header.hd>div.hd_wrap>(a.logo)+(nav#tnb>ul>li*3>a)+(nav#gnb>ul.menu>li*5>a{메뉴$}) -->
+        <header class="hd">
+            <div class="hd_wrap">
+                <a href="" class="logo">
+                    <img src="http://loremflickr.com/120/50" alt="랜덤이미지 가로120/세로50">
+                </a>
+                <nav id="tnb">
+                    <ul class="menu">
+                        <li><a href="">상단1</a></li>
+                        <li><a href="">상단2</a></li>
+                        <li><a href="">상단3</a></li>
+                    </ul>
+                </nav>
+                <nav id="gnb">
+                    <ul class="menu">
+                        <li><a href="">메뉴1</a></li>
+                        <li><a href="">메뉴2</a></li>
+                        <li><a href="">메뉴3</a></li>
+                        <li><a href="">메뉴4</a></li>
+                        <li><a href="">메뉴5</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+
+        
+        <!-- main#content>section.page#page$*4>div.page_wrap>h2.page_tit{페이지$} -->
+        <main id="content">
+            <section class="page" id="page1">
+
+                <div class="page_wrap">
+                    <h2 class="page_tit">페이지1</h2>
+
+                    <figure id="vs">
+                        <input type="radio" name="ra" id="ra1" checked>
+                        <input type="radio" name="ra" id="ra2">
+
+                        <ul class="img_box">
+                            <li class="item1">
+                                <a href="" class="box">페이지1</a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                            </li>
+                            <li class="item2">
+                                <a href="" class="box">페이지2</a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                                <a href="" class="box"></a>
+                            </li>
+                        </ul>
+
+
+                        <ul class="btn_box">
+                            <li class="prev"><label for="ra1" >&lt;</label></li>
+                            <li class="next"><label for="ra2">&gt;</label></li>
+                        </ul>
+
+
+                    </figure>
+                </div>
+            </section>
+
+
+
+            <section class="page" id="page2">
+                <div class="page_wrap">
+                    <h2 class="page_tit">페이지2</h2>
+                </div>
+            </section>
+            <section class="page" id="page3">
+                <div class="page_wrap">
+                    <h2 class="page_tit">페이지3</h2>
+                </div>
+            </section>
+            <section class="page" id="page4">
+                <div class="page_wrap">
+                    <h2 class="page_tit">페이지4</h2>
+                </div>
+            </section>
+        </main>
+
+
+
+        <!-- footer#ft>div.ft_wrap>nav#fnb>ul>li.item$*4>a{하단링크$} -->
+        <footer id="ft">
+            <div class="ft_wrap">
+                <nav id="fnb">
+                    <ul>
+                        <li class="item1"><a href="">하단링크1</a></li>
+                        <li class="item2"><a href="">하단링크2</a></li>
+                        <li class="item3"><a href="">하단링크3</a></li>
+                        <li class="item4"><a href="">하단링크4</a></li>
+                    </ul>
+                </nav>
+                
+
+                <!-- div.ft_logo>(img[src="http://placehold.it/120x50/333/47417/"])+p.copyright -->
+                <div class="ft_logo">
+                    <img src="http://placehold.it/120x50/333/47417/" alt="">
+                </div>
+                <p class="copyright">All Copyright by song &amp; &copy; inhye at 2019</p>
+            </div>
+        </footer>
+</body>
+</html>

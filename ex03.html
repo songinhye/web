@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>웹 연습03</title>
+    <style></style>
+    <script></script>
+</head>
+<body>
+    <h2 class="title">미디어 요소</h2>
+
+
+
+    <h3>이미지 넣기 : 기존 방식</h3>
+    <!-- 크로스 미디어를 하지 않음 -->
+    <div><img src="http://placehold.it/300x200/333" alt="임시 이미지"></div>
+
+
+
+    
+
+
+    <h3>이미지 넣기 : 크로스미디어</h3>
+    <!-- 이미지는 picture 안에 감싸야 함:크로스 미디어를 하여 어떠한 환경이라도 사이즈가 맞게 출력 (1.모바일 2.pc 3.위 두가지가 안나올 때) -->
+   <picture>
+       <!-- 반응형할때 사용하는 속성 srcset, 스마트 기기 등 media,  -->
+       <source srcset="http://placehold.it/320x480/333" media="(max-width:767px)"> 
+       <source srcset="http://placehold.it/768x600/333" media="(min-width:768px;)"> 
+       <img src="http://placehold.it/400x300/333" alt="임시이미지"> 
+   </picture>
+   <h3>크로스미디어 번외</h3>
+   <picture>
+       <!-- 가장 좋은 화질 : 확장자 svg+xml -->
+        <source type="image1.svg+xml" srcset="img1.svg">
+        <source type="image1.webp" srcset="img1.webp">
+        <source type="image1.png" alt="이미지">
+   </picture>
+   
+
+
+
+   <!-- 개별 타입 문서 태그 활용 -->
+   <h3>비디오 요소</h3>
+   <video>
+       <!-- 모든 타입을 다 열도록 확장자별로 적어주고 순서를 적을땐 모바일 먼저 적어준다 (1번,2번:모바일 / 3번,4번:pc) : 크로스미디어 -->
+       <source srcset="vidio1.webm" type="video/webm">
+       <source srcset="vidio.ogv" type="vidio/ogg">
+
+       <source srcset="vidio.mp4" type="vidio/mp4" media="(max-width:767px)">
+       <source srcset="vidio1.mp4" type="video/mp4" media="(min-width:767px)">
+   </video>
+
+
+
+
+   <h3>오디오 요소</h3>
+   <!-- 소리만 출력이라 크로스미디어 신경 안써도 됨 -->
+   <audio>
+       <source src="audio1.mp3" type="audio/mpeg">
+       <source src="audio1.ogg" type="audio/ogg">
+       <source src="audio1.wav" type="audio/wav">
+   </audio>
+
+
+
+   <h3>미디어를 외부 문서로</h3>
+   <!--외부문서를 가져다가 미니박스(스크롤)형식으로 출력 (기본값 scrolling="yes") 또는 "no" -->
+   <iframe src="ex02.html" frameborder="0" scrolling="no"></iframe>
+   <!-- 동영상 -> 오른쪽마우스 ->소스복사 = 외부 영상 연결 -->
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
